@@ -1,8 +1,7 @@
 
-import { AppBar } from "@mui/material";
-import React, { useState } from "react"; 
-import { Link } from "react-router-dom";
+import React from "react"; 
 
+import { Link } from "react-router-dom";
 
 
 
@@ -11,19 +10,21 @@ import { Link } from "react-router-dom";
 function Navbar() {
  
 
-  const [navbarScroll, setNavbarScroll] = useState (false);
 
-  const changeBackground = () => {
-    if (window.scrollY >= 80) {
-      setNavbarScroll(true);
-    } else {
-      setNavbarScroll(false);
-    }
-  };
-  window.addEventListener("scroll", changeBackground);
   return (
     <>
-       <AppBar
+
+
+<nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+        <Link to="/">
+            <a class="navbar-brand" href="#">
+                <h3>LOGO</h3>
+            </a>
+            </Link>
+        </div>
+    </nav>
+       {/* <AppBar
         sx={
           navbarScroll
             ? {
@@ -80,7 +81,7 @@ function Navbar() {
           </div>
         </div>
       </AppBar>
-  
+   */}
      
    
     </>
