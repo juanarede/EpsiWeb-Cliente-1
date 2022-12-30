@@ -1,20 +1,9 @@
-
 import React from "react"; 
-
 import { Link } from "react-router-dom";
-
-
-
-
-
 function Navbar() {
  
-
-
   return (
     <>
-
-
 <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
         <div class="container">
         <Link to="/">

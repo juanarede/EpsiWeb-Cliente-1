@@ -11,4 +11,4 @@ function userMain() {
   )
 }
 
-export default userMain
+export default userMain;

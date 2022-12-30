@@ -8,7 +8,7 @@ import video2 from "../../assets/video/video2.mp4";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
-function inicio() {
+function Inicio() {
   return (
     <>
       <div className="blackg">
@@ -102,4 +102,4 @@ function inicio() {
   );
 }
 
-export default inicio;
+export default Inicio;
