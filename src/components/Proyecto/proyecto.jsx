@@ -1,14 +1,23 @@
 import React from "react";
-import "./proyecto.css";
+import "./Proyecto.css";
+import { useState } from "react";
 
 
 
+function Proyecto() {
 
-function proyecto() {
+  const[start, setStart] = useState(false);
+  const[btnDisplay, setBtnDisplay]= useState(true);
+
+  const handleStart=()=>{
+    setBtnDisplay(false);
+    setStart(true);
+  }
   
   return (
     <>
-      <div className="blackg">
+    
+       <div className="blackg">
         <div style={{ marginTop: "6rem" }} class="container">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Más Agua Limpia más Vida</h1>
@@ -145,4 +154,4 @@ function proyecto() {
   );
 }
 
-export default proyecto;
+export default Proyecto;

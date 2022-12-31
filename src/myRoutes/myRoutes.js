@@ -1,7 +1,7 @@
 
 import { Route, Routes } from "react-router-dom";
-import Inicio from '../components/Inicio/inicio'
-import Proyecto from '../components/Proyecto/proyecto'
+import Inicio from '../components/Inicio/Inicio'
+import Proyecto from '../components/Proyecto/Proyecto'
 
 function myRoutes() {
   return (
