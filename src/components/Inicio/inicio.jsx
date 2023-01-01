@@ -8,7 +8,9 @@ import video2 from "../../assets/video/video2.mp4";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
+
 function Inicio() {
+
   return (
     <>
       <div className="blackg">
