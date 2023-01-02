@@ -38,8 +38,8 @@ function Mapa(){
                 <b>Southwest lat</b>:{bbox[3]}*/}
 
             </Popup>
-        </Marker>
-    ); }
+        </Marker>); }
+      
     return (
         <MapContainer
              center={[-34.60810, -58.37387]}

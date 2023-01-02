@@ -51,6 +51,7 @@ const imageRef = useRef();
   ///////////////
 
   const submitRef = useRef();
+  const uploadRef = useRef();
   
 
 
@@ -177,6 +178,10 @@ await axios.post(`http://127.0.0.1:8000/api/enviar`,formData).then(({data})=>{
   //Reemplaza al boton del input para enviar la data a la DB
   const triggerSave= () =>{
       submitRef.current.click();
+  }
+
+  const triggerUpload =()=>{
+      uploadRef.current.click();
   }
 
  
@@ -309,13 +314,13 @@ await axios.post(`http://127.0.0.1:8000/api/enviar`,formData).then(({data})=>{
                   <div  className="row justify-content-center d-flex align-items-center ">
                           <div class="col-5 col-md-3">
                             {/* Upload Image */}
-                          <input type="file" name="imgFile" capture="camera" onChange={uploadImage}/><i style={{marginTop:"3rem"}} className="fas fa-cloud-arrow-up fa-5x text-gray-300"></i>
+                          <input className="upload-image" type="file" name="imgFile" capture="camera" onChange={uploadImage} ref={uploadRef}/><i style={{marginTop:"3rem"}} className="cursor fas fa-cloud-arrow-up fa-5x text-gray-300" onClick={triggerUpload}></i>
                       </div>
                            {/* Show Image */}
                       {imageURL && <div className='imageHolder'>
                         <img src={imageURL} alt="uploadPreview" crossOrigin='anonymous' ref={imageRef} />
 
-                        <button onClick={handleIndentify}>Clasificar</button>
+                        <button className="btn btn-success" onClick={handleIndentify} >Clasificar</button>
                         
                       </div>}
 

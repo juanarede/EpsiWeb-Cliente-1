@@ -25,3 +25,9 @@ img{
   height: 100px;
   align-items: center;
 }
+.upload-image{
+  display:none;
+}
+.cursor{
+  cursor: pointer;
+}
