@@ -13,7 +13,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 import Logo from "../../assets/img/Logo.png";
-import
+import GradientSVG from "./gradientSVG";
 
 function Proyecto() {
   //Muestra el contenido de clasificacion
@@ -483,13 +483,18 @@ function Proyecto() {
                         {/* Graficos de progreso circulares, testing... */}
                         <div className="row">
                           <div className="col-6">
+                          
                             <div className="circular-bar">
                               <h6>{tagOne}</h6>
+                            
                               <CircularProgressbar
                                 value={confOne.toFixed(2)}
                                 text={`${confOne.toFixed(2)}%`}
                               />
+                            
+
                             </div>
+                           
                           </div>
 
                           <div className="col-6">
@@ -511,7 +516,7 @@ function Proyecto() {
           )}
           {/* Boton para guardar los datos en la DB */}
           {tagOne !== null && (
-            <button className="css-button-gradient--1" onClick={triggerSave}>
+            <button style={{marginBottom:"0.8rem"}} className="css-button-gradient--1" onClick={triggerSave}>
             <i style={{ marginRight: "0.5rem " }} class=" fas fa-regular fa-floppy-disk"></i>
               Guardar Datos
             </button>

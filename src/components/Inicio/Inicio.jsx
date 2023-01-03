@@ -30,17 +30,17 @@ function Inicio() {
                           más <em>Vida</em>
                         </h4>
 
-                        <div class="row justify-content-start">
+                        <div class="row buton-inicio justify-content-start">
                           <div class="col-12 col-md-3">
-                            <div class="main-button buttom-proyecto">
+                            <button class="css-button-gradient--1">
                               <a href="#proyecto">Proyecto</a>
-                            </div>
+                            </button>
                           </div>
                           <div class="col-12 col-md-3">
                             <Link to="/proyecto">
-                              <div class="main-button">
+                              <button class="css-button-gradient--1">
                                 <a href="">Comenzar</a>
-                              </div>
+                              </button>
                             </Link>
                           </div>
                         </div>

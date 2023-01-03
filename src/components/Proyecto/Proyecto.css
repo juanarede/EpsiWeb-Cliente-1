@@ -53,7 +53,14 @@ img{
   position:absolute;
 }
 
-.css-button-gradient--1 {
+a{
+  text-decoration: none;
+  color: #fff;
+}
+.css-button-gradient--1  {
+  text-align: center;
+  overflow: hidden;
+  font-size: 20px;
   min-width: 130px;
   height: 40px;
   color: #fff;
@@ -64,13 +71,21 @@ img{
   position: relative;
   display: inline-block;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
   background-size: 120% auto;
   background-image: linear-gradient(315deg, #4ecdc4 0%, #c797eb 75%);
 }
-.css-button-gradient--1:hover {
+
+
+	
+
+
+
+.css-button-gradient--1 a:hover {
   background-position: right center;
+  text-decoration: none;
+  color: rgba(44, 44, 44, 0.267);
 }
 .css-button-gradient--1:active {
   top: 2px;
@@ -78,4 +93,8 @@ img{
 
 #fileInput{
   display: none;
+}
+
+.buton-inicio{
+  --bs-gutter-y:0.4rem;
 }
