@@ -75,3 +75,7 @@ img{
 .css-button-gradient--1:active {
   top: 2px;
 }
+
+#fileInput{
+  display: none;
+}
