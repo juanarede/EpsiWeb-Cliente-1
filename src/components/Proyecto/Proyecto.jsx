@@ -352,7 +352,7 @@ await axios.post(`http://127.0.0.1:8000/api/enviar`,formData).then(({data})=>{
                 <div className="card-body">
                   <div className="mt-4 text-center small">
                     {/* los gráficos van acá */}
-                    {/* Graficos de progreso circulares */}
+                    {/* Graficos de progreso circulares, testing... */}
                     <div className="circular-bar">
                       <h6>{tagOne}</h6>
                      <CircularProgressbar value={confOne.toFixed(2)} text={`${confOne.toFixed(2)}%`} /> 
