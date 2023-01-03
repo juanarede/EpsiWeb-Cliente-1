@@ -12,7 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-
+import Logo from "../../assets/img/Logo.png"
 
 
 
@@ -246,7 +246,7 @@ await axios.post(`http://127.0.0.1:8000/api/enviar`,formData).then(({data})=>{
                       </div>
                     </div>
                     <div className="col-auto">
-                      <i className="fas fa-question fa-2x text-gray-300"></i>
+                      <i className="fas fa-regular fa-earth-americas fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -269,7 +269,7 @@ await axios.post(`http://127.0.0.1:8000/api/enviar`,formData).then(({data})=>{
                       </div>
                     </div>
                     <div className="col-auto">
-                      {longitud !== null &&<i class="fas fa-question fa-2x text-gray-300"></i>}
+                      {longitud !== null &&<i class="fas fa-regular fa-earth-americas fa-2x text-gray-300"></i>}
                     </div> 
                   </div>
                 </div>
@@ -279,23 +279,45 @@ await axios.post(`http://127.0.0.1:8000/api/enviar`,formData).then(({data})=>{
             <div class="col-12 col-xl-3 col-md-6 mb-4">
 
              {/* Boton de mapa */}
-            <Button type="button" class="btn btn-success main-button buttom-proyecto d-flex align-items-center" onClick={handleShow}>
-              <i style={{marginRight:"0.5rem"}} class="fas fa-location-dot fa-1x text-gray-300"></i>Ver Mapa
+            <Button type="button" class="css-button-gradient--1 mt-2 btn-block" onClick={handleShow}>
+              <i style={{marginRight:"0.5rem"}} class="fas fa-location-dot fa-1x text-gray-300 "></i>Ver Mapa
             </Button>
             
             {/* Modal del mapa */}
-            <Modal size="lg" show={show} onHide={handleClose}>
-               <Modal.Header closeButton>
-                  
+            <Modal
+                style={{ marginTop: "5rem" }}
+                size="lg"
+                show={show}
+                onHide={handleClose}
+              >
+                <Modal.Header className="bg-black">
+                  <Modal.Title style={{ color: "#fff" }}>
+                    Lorem Ipsum
+                  </Modal.Title>
                   </Modal.Header>
-                     <Modal.Body> <Mapa/> </Modal.Body>
+                <Modal.Body className="bg-black">
+                  <div className="map-responsive">
+                    <Mapa />
+                  </div>
               
+                  <Modal.Footer className="d-flex justify-content-between">
+                    <img style={{ width: "6rem" }} src={Logo} alt="logo"/>
+                    <Button className="css-button-gradient--1" onClick={handleClose}>
+                      Cerrar
+                    </Button>
+                  </Modal.Footer>
+                </Modal.Body>
             </Modal>
 
             </div>
+        <div className="row">
+        <div className="col-3"></div>
+        <div className="col-12 col-xl-3 col-md-6 mb-4">
+        {btnDisplay && <a style={{cursor:"pointer"}}  onClick={handleStart}> <h1 style={{marginTop:"3.5rem"}} className="text-center text-gray-300">Empezar Clasificación</h1></a>}
+        </div>
         
-
-           {btnDisplay && <button className="btn btn-warning" onClick={handleStart}>Empezar clasificacion</button>}
+        </div>
+           
           </div>
           {/* Columna Izquierda */}
           
@@ -349,18 +371,31 @@ await axios.post(`http://127.0.0.1:8000/api/enviar`,formData).then(({data})=>{
                   <div class="dropdown no-arrow"></div>
                 </div>
 
-                <div className="card-body">
+                <div style={{paddingBottom:"7rem"}} className="card-body">
                   <div className="mt-4 text-center small">
                     {/* los gráficos van acá */}
                     {/* Graficos de progreso circulares, testing... */}
-                    <div className="circular-bar">
-                      <h6>{tagOne}</h6>
-                     <CircularProgressbar value={confOne.toFixed(2)} text={`${confOne.toFixed(2)}%`} /> 
-                    </div><br /><br /><br/><br />
+                    <div className="row">
+                          <div className="col-6">
+                             <div className="circular-bar">
+                              <h6>{tagOne}</h6>
+                              <CircularProgressbar
+                                value={confOne.toFixed(2)}
+                                text={`${confOne.toFixed(2)}%`}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="col-6">
                     <div className="circular-bar">
                       <h6>{tagTwo}</h6>
-                     <CircularProgressbar value={confTwo.toFixed(2)} text={`${confTwo.toFixed(2)}%`} /> 
+                              <CircularProgressbar
+                                value={confTwo.toFixed(2)}
+                                text={`${confTwo.toFixed(2)}%`}
+                              />
                     </div>
+                  </div>
+                </div>
                     
                   </div>
                 </div>

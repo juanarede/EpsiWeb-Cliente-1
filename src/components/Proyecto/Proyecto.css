@@ -1,11 +1,7 @@
-
 .button-map{
   margin-top: 4rem;
 }
 
-.card-glass{
-  
-}
 
 .dataSend{
   display: none;
@@ -25,9 +21,57 @@ img{
   height: 100px;
   align-items: center;
 }
-.upload-image{
-  display:none;
+
+.map-responsive {
+  overflow:hidden;
+  padding-bottom:400px; 
+  position:relative;
+  height:0;
 }
-.cursor{
+.map-responsive iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
+}
+
+#fileInput{
+  display: none;
+}
+
+.fa-cloud-arrow-up{
   cursor: pointer;
+ 
+}
+
+.file{
+  left:1.5rem;
+  top:1rem;
+  height:90%;
+  width:90%;
+  position:absolute;
+}
+
+.css-button-gradient--1 {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background-size: 120% auto;
+  background-image: linear-gradient(315deg, #4ecdc4 0%, #c797eb 75%);
+}
+.css-button-gradient--1:hover {
+  background-position: right center;
+}
+.css-button-gradient--1:active {
+  top: 2px;
 }
