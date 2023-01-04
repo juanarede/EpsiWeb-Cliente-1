@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./Inicio.css";
-
+import Footer from "../Footer/Footer";
 import video1 from "../../assets/video/video1.mp4";
 import video2 from "../../assets/video/video2.mp4";
 
@@ -29,6 +29,7 @@ function Inicio() {
                         <h4 style={{ marginTop: "-2rem" }}>
                           más <em>Vida</em>
                         </h4>
+               
 
                         <div class="row buton-inicio justify-content-start">
                           <div class="col-12 col-md-3">
@@ -96,10 +97,14 @@ function Inicio() {
                   <div class="col-sm-8 col-md-6"></div>
                 </div>
               </div>
+              <div className="footer">
+              <Footer/>
+              </div>
             </section>
           </div>
         </div>
       </div>
+      
     </>
   );
 }

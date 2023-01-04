@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 import * as ml5 from "ml5";
 import Mapa from "../../mapa/Mapa";
 
+import Footer from "../Footer/Footer";
+
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -513,17 +515,26 @@ function Proyecto() {
                 </div>
               )}
             </div>
+         
           )}
           {/* Boton para guardar los datos en la DB */}
           {tagOne !== null && (
-            <button style={{marginBottom:"0.8rem"}} className="css-button-gradient--1" onClick={triggerSave}>
+            <button style={{marginBottom:"3rem"}} className="css-button-gradient--1" onClick={triggerSave}>
             <i style={{ marginRight: "0.5rem " }} class=" fas fa-regular fa-floppy-disk"></i>
               Guardar Datos
             </button>
+          
+
           )}
+          
         </div>
+        <div className="footer">
+      <Footer />
       </div>
+      </div>
+      
     </>
+    
   );
 }
 
