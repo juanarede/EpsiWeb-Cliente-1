@@ -39,9 +39,6 @@ function Proyecto() {
   const imageRef = useRef();
 
   //Video
-  const[video, setVideo]= useState();
-  const[unlock, setUnlock] = useState(false);
-  const videoRef = useRef();
   const cameraRef = useRef();
 
   
@@ -58,7 +55,7 @@ function Proyecto() {
  const [open, setOpen] = useState(false);
 
  const cerrarModal = () => setOpen(false);
- const abrirModal = () => {setOpen(true); setUnlock(true);}
+ const abrirModal = () => setOpen(true); 
   ///////////////
 
   const submitRef = useRef();
@@ -208,20 +205,7 @@ function Proyecto() {
   //Open camera
   
     
-    if(navigator.mediaDevices.getUserMedia){
-      navigator.mediaDevices.getUserMedia({video: true})
-        .then(
-          (stream)=>{
-            setVideo(document.getElementById('video-test'));
-            video.srcObject = stream;
-            console.log(stream);
-          }
-        ).catch((error)=>{
-           console.log(error);
-        })
-      }else{
-          console.log('No tienes una camara disponible...');
-        }
+   
   
 
   return (
@@ -433,14 +417,14 @@ function Proyecto() {
 
                           <label for="fileInput"> 
                           
-                          <i
+                         { /*<i
                             style={{ marginTop: "3rem" }}
                             className="cursor fas fa-cloud-arrow-up fa-5x text-gray-300"
                             onClick={triggerUpload}
-                          ></i>
+                         ></i>*/}
                          </label>
                         
-                          <input
+                          {/*<input
                             className="upload-image"
                             type="file"
                             name="imgFile"
@@ -449,7 +433,7 @@ function Proyecto() {
                             ref={uploadRef}
                             id="fileInput"
                             onClick={abrirModal}
-                          />
+                        />*/}
                          
                         </div>
                         {/* Show Image / Modal seleccion*/}
@@ -484,7 +468,14 @@ function Proyecto() {
                         {/* take a snapshoot */}
                         <div className="col-5 col-md-3">
                           <a>
-                            <input onClick={abrirModal} ref={cameraRef} type="hidden"/>
+                            <input
+                              className="upload-image"
+                              onClick={abrirModal}
+                              ref={cameraRef} 
+                              type="file" 
+                              crossOrigin="anonymous" 
+                              accept="image/*" 
+                              onChange={uploadImage}/>
                             <i
                               type="button"
                               onClick={triggerCamera}
@@ -495,28 +486,7 @@ function Proyecto() {
                           </a>
                         </div>
 
-                        {/* Modal Camara */}
-                        {unlock && (
-                          <Modal  style={{marginTop:"10rem"}} size="xs" show={open} onHide={cerrarModal}>
-                            <Modal.Header closeButton className="bg-black" >
-                              <Modal.Title style={{color:"#fff"}}>Sacar Captura</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body className="bg-black" >
-                              
-                              <video id="video-test" width={deviceWidth} height="300" autoPlay={true} ref={videoRef}></video> 
-                              
-                            </Modal.Body>
-                            <Modal.Footer className="bg-black" >
-                              <button className="css-button-gradient--1" onClick={handleIndentify}>
-                              <i
-                                 style={{ marginRight: "0.5rem " }}
-                                className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
-                                />
-                                Clasificar
-                              </button>
-                            </Modal.Footer>
-                          </Modal>
-                        )}
+                       
 
                       </div>
                     </div>
