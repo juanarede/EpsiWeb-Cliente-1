@@ -43,12 +43,7 @@ function Proyecto() {
   const imageRef = useRef();
 
   //Video
-<<<<<<< HEAD
-  const cameraRef = useRef();
-=======
-
->>>>>>> 016389b3263d005560d8767e6296654d37b84584
-
+ const cameraRef = useRef();
   
   ////Loading Progress Bar/////
   //const[loading, setLoading] = useState(false);
@@ -206,7 +201,9 @@ function Proyecto() {
     uploadRef.current.click();
   };
 
- 
+ const triggerCamera = ()=>{
+   cameraRef.current.click();
+ }
 
   //Open camera
   
@@ -424,21 +421,11 @@ function Proyecto() {
 
                           <label for="fileInput"> 
                           
-<<<<<<< HEAD
                          { /*<i
                             style={{ marginTop: "3rem" }}
                             className="cursor fas fa-cloud-arrow-up fa-5x text-gray-300"
                             onClick={triggerUpload}
                          ></i>*/}
-=======
-                          <i
-                            style={{ marginTop: "3rem",opacity:"0.2" }}
-                            onClick={triggerUpload}
-                          >
-                            <img  style={{opacity:"0.5",width:"7rem",marginTop: "3rem"}} class="img-fluid" src={cloud}/>
-                          </i>
-                          
->>>>>>> 016389b3263d005560d8767e6296654d37b84584
                          </label>
                         
                           {/*<input
@@ -481,35 +468,17 @@ function Proyecto() {
                             </Modal.Footer>
                           </Modal>
                         )}
-<<<<<<< HEAD
-                        
-                        {/* take a snapshoot */}
-                        <div className="col-5 col-md-3">
-                          <a>
-                            <input
-                              className="upload-image"
-                              onClick={abrirModal}
-                              ref={cameraRef} 
-                              type="file" 
-                              crossOrigin="anonymous" 
-                              accept="image/*" 
-                              onChange={uploadImage}/>
-                            <i
-                              type="button"
-                              onClick={triggerCamera}
-                              
-                              style={{ marginTop: "3rem" }}
-                              className="fas  fa-camera fa-5x text-gray-300 "
-                            ></i>
-                          </a>
-                        </div>
-
-                       
-
-=======
 
                         <div className="col-3 col-md-2 text-center">
-                          <a style={{cursor:"pointer"}} >
+                        <input
+                            className="upload-image"
+                            type="file"
+                            onChange={uploadImage}
+                            ref={cameraRef}
+                            id="fileInput"
+                            onClick={abrirModal}
+                           />
+                          <a style={{cursor:"pointer"}} onClick={triggerCamera}>
                           <img  style={{opacity:"0.2",width:"6rem",marginTop: "3rem"}} class="img-fluid" src={camara}/>
                           </a>
                         </div>
@@ -519,7 +488,6 @@ function Proyecto() {
                             </a>
                         </div>
                       </div>
->>>>>>> 016389b3263d005560d8767e6296654d37b84584
                       </div>
                     </div>
                   </div>
