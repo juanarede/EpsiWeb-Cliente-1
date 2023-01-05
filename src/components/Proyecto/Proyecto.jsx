@@ -39,10 +39,7 @@ function Proyecto() {
   const imageRef = useRef();
 
   //Video
-  const[video, setVideo]= useState();
-  const[unlock, setUnlock] = useState(false);
-  const videoRef = useRef();
-  const cameraRef = useRef();
+
 
   
   ////Loading Progress Bar/////
@@ -58,7 +55,7 @@ function Proyecto() {
  const [open, setOpen] = useState(false);
 
  const cerrarModal = () => setOpen(false);
- const abrirModal = () => {setOpen(true); setUnlock(true);}
+ const abrirModal = () => setOpen(true); 
   ///////////////
 
   const submitRef = useRef();
@@ -201,27 +198,12 @@ function Proyecto() {
     uploadRef.current.click();
   };
 
-  const triggerCamera = ()=>{
-    cameraRef.current.click();
-  }
+ 
 
   //Open camera
   
     
-    if(navigator.mediaDevices.getUserMedia){
-      navigator.mediaDevices.getUserMedia({video: true})
-        .then(
-          (stream)=>{
-            setVideo(document.getElementById('video-test'));
-            video.srcObject = stream;
-            console.log(stream);
-          }
-        ).catch((error)=>{
-           console.log(error);
-        })
-      }else{
-          console.log('No tienes una camara disponible...');
-        }
+   
   
 
   return (
@@ -484,39 +466,16 @@ function Proyecto() {
                         {/* take a snapshoot */}
                         <div className="col-5 col-md-3">
                           <a>
-                            <input onClick={abrirModal} ref={cameraRef} type="hidden"/>
+                            
                             <i
                               type="button"
-                              onClick={triggerCamera}
+                              
                               
                               style={{ marginTop: "3rem" }}
                               className="fas  fa-camera fa-5x text-gray-300 "
                             ></i>
                           </a>
                         </div>
-
-                        {/* Modal Camara */}
-                        {unlock && (
-                          <Modal  style={{marginTop:"10rem"}} size="xs" show={open} onHide={cerrarModal}>
-                            <Modal.Header closeButton className="bg-black" >
-                              <Modal.Title style={{color:"#fff"}}>Sacar Captura</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body className="bg-black" >
-                              
-                              <video id="video-test" width={deviceWidth} height="300" autoPlay={true} ref={videoRef}></video> 
-                              
-                            </Modal.Body>
-                            <Modal.Footer className="bg-black" >
-                              <button className="css-button-gradient--1" onClick={handleIndentify}>
-                              <i
-                                 style={{ marginRight: "0.5rem " }}
-                                className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
-                                />
-                                Clasificar
-                              </button>
-                            </Modal.Footer>
-                          </Modal>
-                        )}
 
                       </div>
                     </div>
