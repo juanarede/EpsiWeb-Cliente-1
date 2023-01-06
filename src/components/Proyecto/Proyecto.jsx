@@ -17,6 +17,10 @@ import "react-circular-progressbar/dist/styles.css";
 import Logo from "../../assets/img/Logo.png";
 import GradientSVG from "./gradientSVG";
 
+import webcam from "../../assets/img/camara-web.png";
+import camara from "../../assets/img/camara.png";
+import cloud from "../../assets/img/cloud.png";
+
 function Proyecto() {
   //Muestra el contenido de clasificacion
   const [start, setStart] = useState(false);
@@ -396,15 +400,19 @@ function Proyecto() {
 
                   <div className="card-body">
                     <div className="chart-area">
-                      <div className="row justify-content-center d-flex align-items-center ">
-                        <div class="col-5 col-md-3">
+                    <div className="container-fluid">
+                      <div className="row d-flex justify-content-center align-items-center text-center ">
+                        <div class="col-4 col-md-2 text-center">
                           {/* Upload Image */}
-                          <label for="fileInput"> 
+                          <label for="fileInput" > 
+                          
                           <i
-                            style={{ marginTop: "3rem" }}
-                            className="cursor fas fa-cloud-arrow-up fa-5x text-gray-300"
+                            style={{ marginTop: "3rem",opacity:"0.2" }}
                             onClick={triggerUpload}
-                          ></i>
+                          >
+                            <img  style={{opacity:"0.5",width:"7rem",marginTop: "3rem"}} class="img-fluid" src={cloud}/>
+                          </i>
+                          
                          </label>
                         
                           <input
@@ -439,23 +447,26 @@ function Proyecto() {
                             <Modal.Footer className="bg-black" >
                               <button className="css-button-gradient--1" onClick={handleIndentify}>
                               <i
-                  style={{ marginRight: "0.5rem " }}
-                  className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
-                />
+                             style={{ marginRight: "0.5rem " }}
+                               className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
+                                       />
                                 Clasificar
                               </button>
                             </Modal.Footer>
                           </Modal>
                         )}
 
-                        <div className="col-5 col-md-3">
-                          <a>
-                            <i
-                              style={{ marginTop: "3rem" }}
-                              className="fas  fa-camera fa-5x text-gray-300 "
-                            ></i>
+                        <div className="col-3 col-md-2 text-center">
+                          <a style={{cursor:"pointer"}} >
+                          <img  style={{opacity:"0.2",width:"6rem",marginTop: "3rem"}} class="img-fluid" src={camara}/>
                           </a>
                         </div>
+                        <div className="col-3 col-md-2 text-center">
+                        <a style={{cursor:"pointer"}}>
+                             <img  style={{opacity:"0.2",width:"6rem",marginTop: "3rem"}} class="img-fluid" src={webcam}/>
+                            </a>
+                        </div>
+                      </div>
                       </div>
                     </div>
                   </div>
