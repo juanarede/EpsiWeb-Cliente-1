@@ -42,6 +42,10 @@ function Proyecto() {
   const [confThree, setConfThree] = useState(null);
   const imageRef = useRef();
 
+  //Video
+
+
+  
   ////Loading Progress Bar/////
   //const[loading, setLoading] = useState(false);
 
@@ -55,7 +59,7 @@ function Proyecto() {
  const [open, setOpen] = useState(false);
 
  const cerrarModal = () => setOpen(false);
- const abrirModal = () => setOpen(true);
+ const abrirModal = () => setOpen(true); 
   ///////////////
 
   const submitRef = useRef();
@@ -133,6 +137,7 @@ function Proyecto() {
 
   //Subir imagen
   const uploadImage = (e) => {
+   
     const { files } = e.target;
 
     if (files.length > 0) {
@@ -196,6 +201,14 @@ function Proyecto() {
   const triggerUpload = () => {
     uploadRef.current.click();
   };
+
+ 
+
+  //Open camera
+  
+    
+   
+  
 
   return (
     <>
@@ -404,7 +417,8 @@ function Proyecto() {
                       <div className="row d-flex justify-content-center align-items-center text-center ">
                         <div class="col-4 col-md-2 text-center">
                           {/* Upload Image */}
-                          <label for="fileInput" > 
+
+                          <label for="fileInput"> 
                           
                           <i
                             style={{ marginTop: "3rem",opacity:"0.2" }}
@@ -427,11 +441,11 @@ function Proyecto() {
                           />
                          
                         </div>
-                        {/* Show Image */}
+                        {/* Show Image / Modal seleccion*/}
                         {imageURL && (
                           <Modal style={{marginTop:"10rem"}} size="xs" show={open} onHide={cerrarModal}>
                             <Modal.Header closeButton className="bg-black" >
-                              <Modal.Title style={{color:"#fff"}}>Lorem Ipsum</Modal.Title>
+                              <Modal.Title style={{color:"#fff"}}>Imagen Seleccionada</Modal.Title>
                             </Modal.Header>
                             <Modal.Body className="bg-black" >
                               <div className="imageHolder">

@@ -25,7 +25,7 @@ function Mapa(){
             //circle.addTo(map);
             //setBbox(e.bounds.toBBoxString().split(","));
         });
-    }),[map];
+    },[map]);
 
     return position === null ? null:(
         <Marker position={position} icon={icon}>
