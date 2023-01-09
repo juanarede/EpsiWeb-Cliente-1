@@ -144,8 +144,8 @@ function Proyecto() {
 
     const formData = new FormData();
 
-    //formData.append("latitud", latitud);
-    //formData.append("longitud", longitud);
+    formData.append("latitud", locate[0]);
+    formData.append("longitud", locate[1]);
     formData.append("label_1", tagOne);
     formData.append("conf_1", confOne);
     formData.append("label_2", tagTwo);
@@ -199,20 +199,16 @@ useEffect(()=>{
             {/* Formulario para base de datos, esto no se visualiza */}
             <div className="dataSend">
               <form onSubmit={sendData}>
-                {/*<input
+                <input
                   type="hidden"
-                  value={latitud}
-                  onChange={(event) => {
-                    setLatitud(event.target.value);
-                  }}
+                  value={locate[0]}
+                 
                 />
                 <input
                   type="hidden"
-                  value={longitud}
-                  onChange={(event) => {
-                    setLongitud(event.target.value);
-                  }}
-                />*/}
+                  value={locate[1]}
+                  
+                />
                 <input
                   type="hidden"
                   value={tagOne}
@@ -468,6 +464,7 @@ useEffect(()=>{
             </div>
 
            <div className="row imagenes-recientes">
+
              <h3>Imagenes Recientes</h3>
              {history.map((image,index)=>{
               return(<div className="recent-Precitions" key={`${image}${index}`}>
