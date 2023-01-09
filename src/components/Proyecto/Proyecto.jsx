@@ -22,9 +22,7 @@ import camara from "../../assets/img/camara.png";
 import cloud from "../../assets/img/cloud.png";
 
 function Proyecto() {
-  //Muestra el contenido de clasificacion
-  const [start, setStart] = useState(false);
-  const [btnDisplay, setBtnDisplay] = useState(true);
+  
 
   //Geolocate
   const [latitud, setLatitud] = useState(null);
@@ -187,10 +185,7 @@ function Proyecto() {
       });
   };
 
-  const handleStart = () => {
-    setBtnDisplay(false);
-    setStart(true);
-  };
+  
 
   //Reemplaza al boton del input para enviar la data a la DB
   const triggerSave = () => {
@@ -220,22 +215,7 @@ function Proyecto() {
           </div>
           {/* Nombre */}
           <div className="row">
-            <div className="col-xl-3 col-md-6 mb-4">
-              <div className="card border-left-primary shadow h-100 py-2">
-                <div className="card-body">
-                  <div className="row no-gutters align-items-center">
-                    <div className="col mr-2">
-                      <div className="h5 mb-0 font-weight-bold text-gray-800">
-                        Nombre
-                      </div>
-                    </div>
-                    <div className="col-auto">
-                      <i className="fas fa-user fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          
 
             {/* Formulario para base de datos, esto no se visualiza */}
             <div className="dataSend">
@@ -382,23 +362,13 @@ function Proyecto() {
             <div className="row">
               <div className="col-3"></div>
               <div className="col-12 col-xl-3 col-md-6 mb-4">
-                {btnDisplay && (
-                  <a style={{ cursor: "pointer" }} onClick={handleStart}>
-                    {" "}
-                    <h1
-                      style={{ marginTop: "3.5rem" }}
-                      className="text-center text-gray-300"
-                    >
-                      Empezar Clasificación
-                    </h1>
-                  </a>
-                )}
+               
               </div>
             </div>
           </div>
           {/* Columna Izquierda */}
 
-          {start && (
+          
             <div className="row">
               <div class="col-xl-8 col-lg-7">
                 <div class="card card-glass shadow mb-4">
@@ -408,69 +378,11 @@ function Proyecto() {
                       class="m-0 font-weight-bold"
                     >
                       Capturar o Subir imagen
-                    </h6>
-                    <div class="dropdown no-arrow"></div>
-                  </div>
-
-                  <div className="card-body">
-                    <div className="chart-area">
-                    <div className="container-fluid">
-                      <div className="row d-flex justify-content-center align-items-center text-center ">
-                        <div class="col-4 col-md-2 text-center">
-                          {/* Upload Image */}
-
-                          <label for="fileInput"> 
-                          
-                         { /*<i
-                            style={{ marginTop: "3rem" }}
-                            className="cursor fas fa-cloud-arrow-up fa-5x text-gray-300"
-                            onClick={triggerUpload}
-                         ></i>*/}
-                         </label>
-                        
-                          {/*<input
-                            className="upload-image"
-                            type="file"
-                            name="imgFile"
-                            capture="camera"
-                            onChange={uploadImage}
-                            ref={uploadRef}
-                            id="fileInput"
-                            onClick={abrirModal}
-                        />*/}
-                         
-                        </div>
-                        {/* Show Image / Modal seleccion*/}
-                        {imageURL && (
-                          <Modal style={{marginTop:"10rem"}} size="xs" show={open} onHide={cerrarModal}>
-                            <Modal.Header closeButton className="bg-black" >
-                              <Modal.Title style={{color:"#fff"}}>Imagen Seleccionada</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body className="bg-black" >
-                              <div className="imageHolder">
-                                <img
-                                className="file"
-                                  src={imageURL}
-                                  alt="uploadPreview"
-                                  crossOrigin="anonymous"
-                                  ref={imageRef}
-                                />
-                              </div>
-                            </Modal.Body>
-                            <Modal.Footer className="bg-black" >
-                              <button className="css-button-gradient--1" onClick={handleIndentify}>
-                              <i
-                             style={{ marginRight: "0.5rem " }}
-                               className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
-                                       />
-                                Clasificar
-                              </button>
-                            </Modal.Footer>
-                          </Modal>
-                        )}
-
-                        <div className="col-3 col-md-2 text-center">
-                        <input
+                    </h6><input type="text" placeholder="URL de la imagen"/>
+                    <div class="dropdown no-arrow">
+                      
+                    <input 
+                            accept="image/*"
                             className="upload-image"
                             type="file"
                             onChange={uploadImage}
@@ -478,15 +390,26 @@ function Proyecto() {
                             id="fileInput"
                             onClick={abrirModal}
                            />
-                          <a style={{cursor:"pointer"}} onClick={triggerCamera}>
+                          <button className="boton" data-toggle="tooltip" data-placement="top" title="Subir imagen / Utilizar camara" style={{cursor:"pointer"}} onClick={triggerCamera}>
                           <img  style={{opacity:"0.2",width:"6rem",marginTop: "3rem"}} class="img-fluid" src={camara}/>
-                          </a>
-                        </div>
-                        <div className="col-3 col-md-2 text-center">
-                        <a style={{cursor:"pointer"}}>
+                          </button>
+                          <button className="boton" data-toggle="tooltip" data-placement="top" title="Utilizar Webcam" style={{cursor:"pointer"}}>
                              <img  style={{opacity:"0.2",width:"6rem",marginTop: "3rem"}} class="img-fluid" src={webcam}/>
-                            </a>
+                          </button>
+                    </div>
+                  </div>
+
+                  <div className="card-body">
+                    <div className="chart-area">
+                    <div className="container-fluid">
+                      <div className="row d-flex justify-content-center align-items-center text-center ">
+                        <div class="col-4 col-md-2 text-center">
+
+                          {/* Upload Image */}
+                          
                         </div>
+                       
+                        
                       </div>
                       </div>
                     </div>
@@ -547,8 +470,53 @@ function Proyecto() {
                 </div>
               )}
             </div>
-         
-          )}
+         {/* Proyecto de listado */}
+           <div className="row">
+             {/* Upload Image */}
+             {imageURL &&(<div className="imageHolder card-body">
+                                <img
+                                  className="file"
+                                  src={imageURL}
+                                  alt="uploadPreview"
+                                  crossOrigin="anonymous"
+                                  ref={imageRef}
+                                />
+                                <button className="css-button-gradient--1" onClick={handleIndentify}>
+                               <i
+                               style={{ marginRight: "0.5rem " }}
+                               className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
+                                       />
+                                Clasificar
+                              </button>
+                              </div>)}
+
+                              <div>
+                                {tagOne !== null &&
+                                <div>
+                                   <div className="circular-bar">
+                              <h6>{tagOne}</h6>
+                            
+                              <CircularProgressbar
+                                className="circular"
+                                value={confOne.toFixed(2)}
+                                text={`${confOne.toFixed(2)}%`}
+                              />
+                              <div className="circular-bar">
+                              <h6>{tagTwo}</h6>
+                              <CircularProgressbar
+                              className="circular"
+                                value={confTwo.toFixed(2)}
+                                text={`${confTwo.toFixed(2)}%`}
+                              />
+                            </div>
+                            
+
+                            </div>
+
+                                </div>}
+                              </div>
+           </div>
+          
           {/* Boton para guardar los datos en la DB */}
           {tagOne !== null && (
             <button style={{marginBottom:"3rem"}} className="css-button-gradient--1" onClick={triggerSave}>
