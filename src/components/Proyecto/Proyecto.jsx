@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Proyecto.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import * as ml5 from "ml5";
@@ -21,12 +21,14 @@ import webcam from "../../assets/img/camara-web.png";
 import camara from "../../assets/img/camara.png";
 import cloud from "../../assets/img/cloud.png";
 
+import { locateContext } from "../../context/locateContext";
+
 function Proyecto() {
   
 
   //Geolocate
-  const [latitud, setLatitud] = useState(null);
-  const [longitud, setLongitud] = useState(null);
+ const locate = useContext(locateContext);
+ 
 
   //Image Classifier
   const [imageURL, setImageURL] = useState(null);
@@ -42,9 +44,10 @@ function Proyecto() {
 
   //Video
  const cameraRef = useRef();
+ 
+ //Image Container
+ const [history, setHistory] = useState([]);
   
-  ////Loading Progress Bar/////
-  //const[loading, setLoading] = useState(false);
 
   /////Modal/////
   const [show, setShow] = useState(false);
@@ -62,32 +65,6 @@ function Proyecto() {
   const submitRef = useRef();
   const uploadRef = useRef();
 
-  //Condicional para Geolocalizacion
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setLatitud(pos.coords.latitude);
-        console.log(latitud);
-        setLongitud(pos.coords.longitude);
-        console.log(longitud);
-      },
-      (error) => {
-        switch (error.code) {
-          case error.PERMISSION_DENIED:
-            console.log("El usuario denegó la solicitud");
-            break;
-          case error.POSITION_UNAVAILABLE:
-            console.log("Localización no disponible");
-            break;
-          case error.TIMEOUT:
-            console.log("Se agotó el tiempo de espera para la localizacion");
-            break;
-        }
-      }
-    );
-  } else {
-    console.log("Tu navegador no soporta geolocalizacion");
-  }
 
   //Model Load, Callback second argument
   const classifier = ml5.imageClassifier(
@@ -167,8 +144,8 @@ function Proyecto() {
 
     const formData = new FormData();
 
-    formData.append("latitud", latitud);
-    formData.append("longitud", longitud);
+    //formData.append("latitud", latitud);
+    //formData.append("longitud", longitud);
     formData.append("label_1", tagOne);
     formData.append("conf_1", confOne);
     formData.append("label_2", tagTwo);
@@ -200,9 +177,11 @@ function Proyecto() {
    cameraRef.current.click();
  }
 
-  //Open camera
-  
-    
+useEffect(()=>{
+  if(imageURL){
+    setHistory([imageURL,...history])
+  }
+},[imageURL]);
    
   
 
@@ -220,7 +199,7 @@ function Proyecto() {
             {/* Formulario para base de datos, esto no se visualiza */}
             <div className="dataSend">
               <form onSubmit={sendData}>
-                <input
+                {/*<input
                   type="hidden"
                   value={latitud}
                   onChange={(event) => {
@@ -233,7 +212,7 @@ function Proyecto() {
                   onChange={(event) => {
                     setLongitud(event.target.value);
                   }}
-                />
+                />*/}
                 <input
                   type="hidden"
                   value={tagOne}
@@ -266,9 +245,10 @@ function Proyecto() {
                 {/* Se reemplaza funcionalidad de este submit */}
               </form>
             </div>
+            <div><h2>Localización</h2></div>
 
-            {/* Logitud */}
-            <div className="col-xl-3 col-md-6 mb-4">
+            {/* Localizacion en el orden LATITUD - LONGITUD */}           
+            <div  className="col-xl-3 col-md-6 mb-4">
               <div className="card border-left-success shadow h-100 py-2">
                 <div className="card-body">
                   <div className="row no-gutters align-items-center">
@@ -280,7 +260,7 @@ function Proyecto() {
                         Respuesta Pendiente
                       </div>
                       <div className="h5 mb-0 font-weight-bold text-gray-800">
-                        Latitud {latitud}
+                       Latitud {locate[0]}
                       </div>
                     </div>
                     <div className="col-auto">
@@ -290,9 +270,8 @@ function Proyecto() {
                 </div>
               </div>
             </div>
-            {/* Longitud */}
-            <div className="col-xl-3 col-md-6 mb-4">
-              <div className="card border-left-warning shadow h-100 py-2">
+            <div  className="col-xl-3 col-md-6 mb-4">
+              <div className="card border-left-success shadow h-100 py-2">
                 <div className="card-body">
                   <div className="row no-gutters align-items-center">
                     <div className="col mr-2">
@@ -303,18 +282,18 @@ function Proyecto() {
                         Respuesta Pendiente
                       </div>
                       <div className="h5 mb-0 font-weight-bold text-gray-800">
-                        Longitud {longitud}
+                       Longitud {locate[1]}
                       </div>
                     </div>
                     <div className="col-auto">
-                      {longitud !== null && (
-                        <i class="fas fa-regular fa-earth-americas fa-2x text-gray-300"></i>
-                      )}
+                      <i className="fas fa-regular fa-earth-americas fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            
+            
 
             <div class="col-12 col-xl-3 col-md-6 mb-4">
               {/* Boton de mapa */}
@@ -397,6 +376,7 @@ function Proyecto() {
                              <img  style={{opacity:"0.2",width:"6rem",marginTop: "3rem"}} class="img-fluid" src={webcam}/>
                           </button>
                     </div>
+                   
                   </div>
 
                   <div className="card-body">
@@ -406,6 +386,22 @@ function Proyecto() {
                         <div class="col-4 col-md-2 text-center">
 
                           {/* Upload Image */}
+                          {imageURL &&(<div className="imageHolder card-body">
+                                <img
+                                  className="file"
+                                  src={imageURL}
+                                  alt="uploadPreview"
+                                  crossOrigin="anonymous"
+                                  ref={imageRef}
+                                />
+                                <button className="css-button-gradient--1" onClick={handleIndentify}>
+                               <i
+                               style={{ marginRight: "0.5rem " }}
+                               className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
+                                       />
+                                Clasificar
+                              </button>
+                              </div>)}
                           
                         </div>
                        
@@ -437,7 +433,7 @@ function Proyecto() {
                     >
                       <div className="mt-4 text-center small">
                         {/* los gráficos van acá */}
-                        {/* Graficos de progreso circulares, testing... */}
+                       
                         <div className="row">
                           <div className="col-6">
                           
@@ -470,51 +466,16 @@ function Proyecto() {
                 </div>
               )}
             </div>
-         {/* Proyecto de listado */}
-           <div className="row">
-             {/* Upload Image */}
-             {imageURL &&(<div className="imageHolder card-body">
-                                <img
-                                  className="file"
-                                  src={imageURL}
-                                  alt="uploadPreview"
-                                  crossOrigin="anonymous"
-                                  ref={imageRef}
-                                />
-                                <button className="css-button-gradient--1" onClick={handleIndentify}>
-                               <i
-                               style={{ marginRight: "0.5rem " }}
-                               className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
-                                       />
-                                Clasificar
-                              </button>
-                              </div>)}
 
-                              <div>
-                                {tagOne !== null &&
-                                <div>
-                                   <div className="circular-bar">
-                              <h6>{tagOne}</h6>
-                            
-                              <CircularProgressbar
-                                className="circular"
-                                value={confOne.toFixed(2)}
-                                text={`${confOne.toFixed(2)}%`}
-                              />
-                              <div className="circular-bar">
-                              <h6>{tagTwo}</h6>
-                              <CircularProgressbar
-                              className="circular"
-                                value={confTwo.toFixed(2)}
-                                text={`${confTwo.toFixed(2)}%`}
-                              />
-                            </div>
-                            
-
-                            </div>
-
-                                </div>}
-                              </div>
+           <div className="row imagenes-recientes">
+             <h3>Imagenes Recientes</h3>
+             {history.map((image,index)=>{
+              return(<div className="recent-Precitions" key={`${image}${index}`}>
+                <img className="image-recent" src={image} alt='Recent Prediction' onClick={()=>{
+                    setImageURL(image)
+                  }}/>
+              </div>)
+             })}
            </div>
           
           {/* Boton para guardar los datos en la DB */}

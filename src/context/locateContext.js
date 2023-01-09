@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from "react";
-import Classify from "../components/Classify/Classify";
+
+import App from "../App";
 
 const locateContext = React.createContext();
 

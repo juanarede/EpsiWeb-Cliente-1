@@ -80,6 +80,10 @@ a{
   background-image: linear-gradient(315deg, #4ecdc4 0%, #c797eb 75%);
 }
 
+.image-recent{
+  max-width: 200px;
+  max-height: 200px;
+}
 
 	
 
