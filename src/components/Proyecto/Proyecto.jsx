@@ -480,21 +480,6 @@ function Proyecto() {
             </div>
           </div>
 
-<<<<<<< Updated upstream
-           <div className="row imagenes-recientes">
-
-             <h3>Imagenes Recientes</h3>
-             {history.map((image,index)=>{
-              return(<div className="recent-Precitions" key={`${image}${index}`}>
-                <img className="image-recent" src={image} alt='Recent Prediction' onClick={()=>{
-                    setImageURL(image)
-                  }}/>
-              </div>)
-             })}
-           </div>
-          
-=======
->>>>>>> Stashed changes
           {/* Boton para guardar los datos en la DB */}
           {tagOne !== null && (
             <button
