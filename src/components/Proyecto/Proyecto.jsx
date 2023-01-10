@@ -24,11 +24,8 @@ import cloud from "../../assets/img/cloud.png";
 import { locateContext } from "../../context/locateContext";
 
 function Proyecto() {
-  
-
   //Geolocate
- const locate = useContext(locateContext);
- 
+  const locate = useContext(locateContext);
 
   //Image Classifier
   const [imageURL, setImageURL] = useState(null);
@@ -43,11 +40,10 @@ function Proyecto() {
   const imageRef = useRef();
 
   //Video
- const cameraRef = useRef();
- 
- //Image Container
- const [history, setHistory] = useState([]);
-  
+  const cameraRef = useRef();
+
+  //Image Container
+  const [history, setHistory] = useState([]);
 
   /////Modal/////
   const [show, setShow] = useState(false);
@@ -55,16 +51,11 @@ function Proyecto() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  
- const [open, setOpen] = useState(false);
-
- const cerrarModal = () => setOpen(false);
- const abrirModal = () => setOpen(true); 
+ 
   ///////////////
 
   const submitRef = useRef();
   const uploadRef = useRef();
-
 
   //Model Load, Callback second argument
   const classifier = ml5.imageClassifier(
@@ -111,7 +102,6 @@ function Proyecto() {
 
   //Subir imagen
   const uploadImage = (e) => {
-   
     const { files } = e.target;
 
     if (files.length > 0) {
@@ -162,8 +152,6 @@ function Proyecto() {
       });
   };
 
-  
-
   //Reemplaza al boton del input para enviar la data a la DB
   const triggerSave = () => {
     submitRef.current.click();
@@ -173,17 +161,15 @@ function Proyecto() {
     uploadRef.current.click();
   };
 
- const triggerCamera = ()=>{
-   cameraRef.current.click();
- }
+  const triggerCamera = () => {
+    cameraRef.current.click();
+  };
 
-useEffect(()=>{
-  if(imageURL){
-    setHistory([imageURL,...history])
-  }
-},[imageURL]);
-   
-  
+  useEffect(() => {
+    if (imageURL) {
+      setHistory([imageURL, ...history]);
+    }
+  }, [imageURL]);
 
   return (
     <>
@@ -194,8 +180,6 @@ useEffect(()=>{
           </div>
           {/* Nombre */}
           <div className="row">
-          
-
             {/* Formulario para base de datos, esto no se visualiza */}
             <div className="dataSend">
               <form onSubmit={sendData}>
@@ -241,22 +225,24 @@ useEffect(()=>{
                 {/* Se reemplaza funcionalidad de este submit */}
               </form>
             </div>
-            <div><h2>Localización</h2></div>
+            <div>
+              <h2>Localización</h2>
+            </div>
 
-            {/* Localizacion en el orden LATITUD - LONGITUD */}           
-            <div  className="col-xl-3 col-md-6 mb-4">
+            {/* Localizacion en el orden LATITUD - LONGITUD */}
+            <div className="col-xl-3 col-md-6 mb-4">
               <div className="card border-left-success shadow h-100 py-2">
                 <div className="card-body">
                   <div className="row no-gutters align-items-center">
                     <div className="col mr-2">
                       <div
                         style={{ color: "#930ee4" }}
-                        className="text-xs font-weight-bold  text-uppercase mb-1"
+                        className="text-column columns-localizacion text-xs font-weight-bold  text-uppercase mb-1"
                       >
                         Respuesta Pendiente
                       </div>
-                      <div className="h5 mb-0 font-weight-bold text-gray-800">
-                       Latitud {locate[0]}
+                      <div className="  h5 mb-0 font-weight-bold text-gray-800">
+                        Latitud {locate[0]}
                       </div>
                     </div>
                     <div className="col-auto">
@@ -266,19 +252,18 @@ useEffect(()=>{
                 </div>
               </div>
             </div>
-            <div  className="col-xl-3 col-md-6 mb-4">
+            <div className="col-xl-3 col-md-6 mb-4">
               <div className="card border-left-success shadow h-100 py-2">
                 <div className="card-body">
                   <div className="row no-gutters align-items-center">
                     <div className="col mr-2">
                       <div
-                        style={{ color: "#930ee4" }}
-                        className="text-xs font-weight-bold  text-uppercase mb-1"
+                        className=" text-column text-xs font-weight-bold  text-uppercase mb-1"
                       >
                         Respuesta Pendiente
                       </div>
-                      <div className="h5 mb-0 font-weight-bold text-gray-800">
-                       Longitud {locate[1]}
+                      <div className="  h5 mb-0 font-weight-bold text-gray-800">
+                        Longitud {locate[1]}
                       </div>
                     </div>
                     <div className="col-auto">
@@ -288,8 +273,6 @@ useEffect(()=>{
                 </div>
               </div>
             </div>
-            
-            
 
             <div class="col-12 col-xl-3 col-md-6 mb-4">
               {/* Boton de mapa */}
@@ -336,133 +319,168 @@ useEffect(()=>{
             </div>
             <div className="row">
               <div className="col-3"></div>
-              <div className="col-12 col-xl-3 col-md-6 mb-4">
-               
-              </div>
+              <div className="col-12 col-xl-3 col-md-6 mb-4"></div>
             </div>
           </div>
           {/* Columna Izquierda */}
 
-          
-            <div className="row">
-              <div class="col-xl-8 col-lg-7">
-                <div class="card card-glass shadow mb-4">
-                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6
-                      style={{ color: "#930ee4" }}
-                      class="m-0 font-weight-bold"
-                    >
-                      Capturar o Subir imagen
-                    </h6><input type="text" placeholder="URL de la imagen"/>
-                    <div class="dropdown no-arrow">
-                      
-                    <input 
-                            accept="image/*"
-                            className="upload-image"
-                            type="file"
-                            onChange={uploadImage}
-                            ref={cameraRef}
-                            id="fileInput"
-                            onClick={abrirModal}
-                           />
-                          <button className="boton" data-toggle="tooltip" data-placement="top" title="Subir imagen / Utilizar camara" style={{cursor:"pointer"}} onClick={triggerCamera}>
-                          <img  style={{opacity:"0.2",width:"6rem",marginTop: "3rem"}} class="img-fluid" src={camara}/>
-                          </button>
-                          <button className="boton" data-toggle="tooltip" data-placement="top" title="Utilizar Webcam" style={{cursor:"pointer"}}>
-                             <img  style={{opacity:"0.2",width:"6rem",marginTop: "3rem"}} class="img-fluid" src={webcam}/>
-                          </button>
-                    </div>
-                   
-                  </div>
+          <div class="row buton-inicio justify-content-start  ">
+            <div class="col-12 col-md-3 col-lg-2">
+              <input
+                accept="image/*"
+                className="upload-image"
+                type="file"
+                onChange={uploadImage}
+                ref={cameraRef}
+                id="fileInput"
+              />
+              <button
+                className="boton css-button-gradient--2 mt-2 btn-block"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Subir imagen / Utilizar camara"
+                style={{ cursor: "pointer" }}
+                onClick={triggerCamera}
+              >
+                <i class=" fas fa-regular fa-camera"></i>
+                <h5 style={{ color: "#fff" }}>Capturar o Subir Imagen</h5>
+              </button>
+            </div>
 
-                  <div className="card-body">
-                    <div className="chart-area">
-                    <div className="container-fluid">
-                      <div className="row d-flex justify-content-center align-items-center text-center ">
-                        <div class="col-4 col-md-2 text-center">
+            <div class="col-12 col-md-2 col-lg-2">
+              <button
+                className="css-button-gradient--2 mt-2 btn-block"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Utilizar Webcam"
+                style={{ cursor: "pointer" }}
+              >
+                <img style={{ width: "2rem" }} src={webcam} alt=""></img>
 
-                          {/* Upload Image */}
-                          {imageURL &&(<div className="imageHolder card-body">
-                                <img
-                                  className="file"
-                                  src={imageURL}
-                                  alt="uploadPreview"
-                                  crossOrigin="anonymous"
-                                  ref={imageRef}
-                                />
-                                <button className="css-button-gradient--1" onClick={handleIndentify}>
-                               <i
-                               style={{ marginRight: "0.5rem " }}
-                               className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
-                                       />
-                                Clasificar
-                              </button>
-                              </div>)}
-                          
-                        </div>
-                       
-                        
-                      </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <h5 style={{ color: "#fff" }}>Utilizar la WebCam</h5>
+              </button>
+            </div>
+            <div class="col-12 col-md-2 col-lg-8">
 
-              {/* Columna Derecha */}
-              {tagOne !== null && (
-                <div class="col-xl-4 col-lg-5">
-                  <div class="card card-glass shadow mb-4">
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <h6
-                        style={{ color: "#930ee4" }}
-                        class="m-0 font-weight-bold "
-                      >
-                        Clasificacion
-                      </h6>
-                      <div class="dropdown no-arrow"></div>
-                    </div>
+            </div>
+          </div>
+        </div>
 
-                    <div
-                      style={{ paddingBottom: "7rem" }}
-                      className="card-body"
-                    >
-                      <div className="mt-4 text-center small">
-                        {/* los gráficos van acá */}
-                       
-                        <div className="row">
-                          <div className="col-6">
-                          
-                            <div className="circular-bar">
-                              <h6>{tagOne}</h6>
-                            
-                              <CircularProgressbar
-                                value={confOne.toFixed(2)}
-                                text={`${confOne.toFixed(2)}%`}
-                              />
-                            
-
-                            </div>
-                           
-                          </div>
-
-                          <div className="col-6">
-                            <div className="circular-bar">
-                              <h6>{tagTwo}</h6>
-                              <CircularProgressbar
-                                value={confTwo.toFixed(2)}
-                                text={`${confTwo.toFixed(2)}%`}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        <div className="container ">
+          <div className="row d-flex justify-content-center align-items-center text-center ">
+            <div class="col-12 col-md-4 col-lg-6 text-center mt-4">
+              {/* Upload Image */}
+              {imageURL && (
+                <div className="imageHolder card-body">
+                  <img
+                    className="file-responsive"
+                    src={imageURL}
+                    alt="uploadPreview"
+                    crossOrigin="anonymous"
+                    ref={imageRef}
+                  />
+                  <button
+                    className="css-button-gradient--1 mt-2"
+                    onClick={handleIndentify}
+                  >
+                    <i
+                      style={{ marginRight: "0.5rem " }}
+                      className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
+                    />
+                    Clasificar
+                  </button>
                 </div>
               )}
             </div>
 
+            <div className=" col-12 col-md-4 col-lg-6">
+            {tagOne !== null && (
+              <div className="row">
+              <div class=" graficos mb-4 col-xl-6 col-lg-5">
+{/*             
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6
+                    style={{ color: "#930ee4" }}
+                    class="m-0 font-weight-bold "
+                  >
+                    Clasificacion
+                  </h6>
+                  <div class="dropdown no-arrow"></div>
+                </div>  */}
+
+                 
+                    <div className=" text-center small">
+                    {/* los gráficos van acá */}
+
+                    <div className="row">
+                      <div className="col-6 col-lg-6">
+                        <div className="circular-bar">
+                          <h6>{tagOne}</h6>
+
+                          <CircularProgressbar
+                            value={confOne.toFixed(2)}
+                            text={`${confOne.toFixed(2)}%`}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="col-6 col-lg-6">
+                        <div className="circular-bar">
+                          <h6>{tagTwo}</h6>
+                          <CircularProgressbar
+                            value={confTwo.toFixed(2)}
+                            text={`${confTwo.toFixed(2)}%`}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  
+                </div>
+              
+            </div>
+            </div>
+          )}
+            </div>
+          </div>
+
+          {/* Columna Derecha */}
+        
+
+          <div className="container">
+            <div className="row mt-4">
+              <div
+                style={{ marginTop: "3rem" }}
+                className="col-12 col-md-4 col-lg-4"
+              >
+                <h3>Imagenes Recientes</h3>
+              </div>
+            </div>
+           <div className="row">
+            {history.map((image, index) => {
+              return (
+                    <div
+                      className="recent-Precitions img-horizontal col-12 col-md-1 col-lg-3"
+                      key={`${image}${index}`}
+                    >
+                      <img
+                        className="image-recent"
+                        src={image}
+                        alt="Recent Prediction"
+                        onClick={() => {
+                          setImageURL(image);
+                        }}
+                      />
+                    </div>
+                 
+                    
+            
+           
+              );
+            })}
+            </div>
+          </div>
+
+<<<<<<< Updated upstream
            <div className="row imagenes-recientes">
 
              <h3>Imagenes Recientes</h3>
@@ -475,24 +493,28 @@ useEffect(()=>{
              })}
            </div>
           
+=======
+>>>>>>> Stashed changes
           {/* Boton para guardar los datos en la DB */}
           {tagOne !== null && (
-            <button style={{marginBottom:"3rem"}} className="css-button-gradient--1" onClick={triggerSave}>
-            <i style={{ marginRight: "0.5rem " }} class=" fas fa-regular fa-floppy-disk"></i>
+            <button
+              style={{ marginBottom: "3rem" }}
+              className="css-button-gradient--1"
+              onClick={triggerSave}
+            >
+              <i
+                style={{ marginRight: "0.5rem " }}
+                class=" fas fa-regular fa-floppy-disk"
+              ></i>
               Guardar Datos
             </button>
-          
-
           )}
-          
         </div>
         <div className="footer">
-      <Footer />
+          <Footer />
+        </div>
       </div>
-      </div>
-      
     </>
-    
   );
 }
 
