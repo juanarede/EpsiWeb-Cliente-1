@@ -41,15 +41,21 @@ function Proyecto() {
 
   //Video
   const cameraRef = useRef();
+  const[video, setVideo]= useState();
+  const[canvas, setCanvas] = useState(false);
+  const videoRef = useRef();
+  const canvasRef = useRef();
 
   //Image Container
   const [history, setHistory] = useState([]);
 
   /////Modal/////
   const [show, setShow] = useState(false);
+  const [openVideo, setOpenVideo] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false);setOpenVideo(false);}
   const handleShow = () => setShow(true);
+  const handleOpenVideo=()=> setOpenVideo(true);
 
  
   ///////////////
@@ -68,6 +74,9 @@ function Proyecto() {
     console.log("Modelo listo");
     if (identify != false) {
       classifier.predict(imageRef.current, getResults);
+    }
+    if(identify !== false && canvas !== false){
+      classifier.predict(canvasRef.current, getResults)
     }
   }
 
@@ -102,11 +111,13 @@ function Proyecto() {
 
   //Subir imagen
   const uploadImage = (e) => {
+    setCanvas(false)
     const { files } = e.target;
 
     if (files.length > 0) {
       const url = URL.createObjectURL(files[0]);
       setImageURL(url);
+      setCanvas(false);
     } else {
       setImageURL(null);
     }
@@ -164,6 +175,37 @@ function Proyecto() {
   const triggerCamera = () => {
     cameraRef.current.click();
   };
+
+  //Web Cam Start
+  const readyToUse = ()=>{
+    setCanvas(true);
+    if(navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({video: true})
+        .then(
+          (stream)=>{
+            setVideo(document.getElementById('video-test'));
+            video.srcObject = stream;
+            console.log(stream);
+          }
+        ).catch((error)=>{
+           console.log(error);
+        })
+      }else{
+          console.log('No tienes una camara disponible...');
+        }
+   }
+   //Captura con la webcam
+   function handleCapture(){
+    const cnv = document.getElementById("cnv");
+    const ctx = cnv.getContext('2d');
+    ctx.drawImage(videoRef.current,0,0,200,200);
+    const src = cnv.toDataURL('image/jpeg', 1.0)
+    setHistory([src,...history]);
+  }
+ 
+ const deleteResources=()=>{
+   setHistory([]);
+ }
 
   useEffect(() => {
     if (imageURL) {
@@ -297,7 +339,7 @@ function Proyecto() {
               >
                 <Modal.Header className="bg-black">
                   <Modal.Title style={{ color: "#fff" }}>
-                    Lorem Ipsum
+                    Ubicación Aproximada
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="bg-black">
@@ -334,6 +376,7 @@ function Proyecto() {
                 ref={cameraRef}
                 id="fileInput"
               />
+              {/* Boton de subir imagen */}
               <button
                 className="boton css-button-gradient--2 mt-2 btn-block"
                 data-toggle="tooltip"
@@ -348,18 +391,57 @@ function Proyecto() {
             </div>
 
             <div class="col-12 col-md-2 col-lg-2">
+
+              {/* Boton de WebCam */}
               <button
                 className="css-button-gradient--2 mt-2 btn-block"
                 data-toggle="tooltip"
                 data-placement="top"
                 title="Utilizar Webcam"
                 style={{ cursor: "pointer" }}
+                onClick={handleOpenVideo}
+                
               >
                 <img style={{ width: "2rem" }} src={webcam} alt=""></img>
 
                 <h5 style={{ color: "#fff" }}>Utilizar la WebCam</h5>
               </button>
+          
             </div>
+
+             {/* Modal del WebCam */}
+             <Modal
+                style={{ marginTop: "5rem" }}
+                size="lg"
+                show={openVideo}
+                onHide={handleClose}        
+                 >
+                <Modal.Header className="bg-black">
+                  <Modal.Title style={{ color: "#fff" }}>
+                    Web Cam
+                  </Modal.Title>
+                  <button className='btn btn-danger' onClick={readyToUse}>Iniciar</button>
+                </Modal.Header>
+                <Modal.Body className="bg-black">
+                  
+                  <video id="video-test"  width={Modal.Body.width} height={Modal.Body.height} autoPlay={true} ref={videoRef}> 
+                  </video>
+                    
+                  
+                  <Modal.Footer className="d-flex justify-content-between">
+                    <img style={{ width: "6rem" }} src={Logo} alt="logo" />
+                    <button
+                      className="css-button-gradient--1"
+                      onClick={handleClose}
+                    >
+                      Cerrar
+                    </button>
+                    
+                    <button  className='btn btn-success' id='shoot' onClick={handleCapture}>Capturar</button>
+                  </Modal.Footer>
+                </Modal.Body>
+              </Modal>
+
             <div class="col-12 col-md-2 col-lg-8">
 
             </div>
@@ -391,23 +473,33 @@ function Proyecto() {
                   </button>
                 </div>
               )}
+              {/* Captura Modal */}
+              {canvas && 
+                (<div className="imageHolder card-body">
+                  <canvas
+                    id="cnv"
+                    className="file-responsive"
+                                         
+                    ref={canvasRef}
+                  ></canvas>
+                  <button
+                    className="css-button-gradient--1 mt-2"
+                    onClick={handleIndentify}
+                     >
+                    <i
+                      style={{ marginRight: "0.5rem " }}
+                      className="fas fa-regular fa-bacterium fa-1x text-gray-300 "
+                    />
+                    Clasificar
+                  </button>
+                </div>)
+              }
             </div>
 
             <div className=" col-12 col-md-4 col-lg-6">
             {tagOne !== null && (
               <div className="row">
               <div class=" graficos mb-4 col-xl-6 col-lg-5">
-{/*             
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6
-                    style={{ color: "#930ee4" }}
-                    class="m-0 font-weight-bold "
-                  >
-                    Clasificacion
-                  </h6>
-                  <div class="dropdown no-arrow"></div>
-                </div>  */}
-
                  
                     <div className=" text-center small">
                     {/* los gráficos van acá */}
@@ -438,21 +530,27 @@ function Proyecto() {
                 </div>
               
             </div>
+
             </div>
           )}
+          
             </div>
+            
           </div>
 
           {/* Columna Derecha */}
         
 
           <div className="container">
-            <div className="row mt-4">
+           <div className="row mt-4">
               <div
                 style={{ marginTop: "3rem" }}
                 className="col-12 col-md-4 col-lg-4"
               >
-                <h3>Imagenes Recientes</h3>
+                {/* Imagenes recientes */}
+                {history.length > 0 && <div>
+                  <h3>Imagenes Recientes</h3> <button className="btn btn-danger" onClick={deleteResources}>Borrar Historial</button><br/><br/>
+                </div>}
               </div>
             </div>
            <div className="row">
@@ -470,10 +568,9 @@ function Proyecto() {
                           setImageURL(image);
                         }}
                       />
+                      
                     </div>
-                 
-                    
-            
+                          
            
               );
             })}
