@@ -8,7 +8,7 @@ function myRoutes() {
     <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/proyecto" element={<Proyecto />} />
-
+        
     </Routes>
   )
 }
