@@ -1,9 +1,11 @@
 import React from 'react'
-import LogoBlack from '../../assets/img/logoblack.png'
+import LogoWithe from '../../assets/img/logoWithe.png'
 function Footer() {
   return (
     <>
-        <h6 className='text-gray-500' style={{color:"#000"}}>Hecho por <a href='https://epsiweb.com/' style={{cursor:"pointer"}}><img style={{width:"6rem"}} src={LogoBlack} alt="logo epsiweb"/></a></h6>
+    <div style={{paddingTop:"2rem",paddingBottom:"1rem"}} className='bg-black d-flex justify-content-center align-items-center'>
+        <h6 className='text-gray-500' style={{color:"#fff"}}>Hecho por <a href='https://epsiweb.com/' style={{cursor:"pointer"}}><img style={{width:"6rem"}} src={LogoWithe} alt="logo epsiweb"/></a></h6>
+        </div>
     </>
   )
 }

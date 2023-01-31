@@ -52,7 +52,11 @@ function Navbar() {
                 <a href="#proyecto"> <li class="nav-tab">Proyecto</li> </a>
                 {/* <a href="#planos" > <li class="nav-tab">Planos</li></a> */}
                 <a href="#agradecimientos">  <li class="nav-tab">Agradecimientos</li></a>
-                <Link to="/muestras"><a href="#"> <li class="nav-tab">Muestras</li></a></Link>
+                <Link to="/muestras">
+                              <button style={{marginLeft:"1rem"}} class="css-button-gradient--1">
+                                <a href="#">Muestras</a>
+                              </button>
+                            </Link>
            
 
                        

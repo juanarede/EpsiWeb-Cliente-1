@@ -106,7 +106,7 @@ function Inicio() {
              
               <div className="footer">
           
-                <Footer />
+               
               </div>
             </section>
         
@@ -114,8 +114,9 @@ function Inicio() {
         </div>
        
         <MidleBanner />
+        <Footer />
       </div>
- 
+    
     </>
   );
 }
