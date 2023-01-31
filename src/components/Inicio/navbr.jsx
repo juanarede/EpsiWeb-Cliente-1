@@ -1,24 +1,26 @@
 
 import { AppBar } from "@mui/material";
-import React,{useState} from "react"; 
+import React from "react"; 
 
 import { Link } from "react-router-dom";
-import Logo from "../../assets/img/Logo.png"
+import Logo from "../../assets/img/Logo.png";
+
+import "./Navbr.css";
 
 
 
 
 function Navbar() {
-  const [navbarScroll, setNavbarScroll] = useState(false);
+  // const [navbarScroll, setNavbarScroll] = useState(false);
 
-  const changeBackground = () => {
-    if (window.scrollY >= 80) {
-      setNavbarScroll(true);
-    } else {
-      setNavbarScroll(false);
-    }
-  };
-  window.addEventListener("scroll", changeBackground);
+  // const changeBackground = () => {
+  //   if (window.scrollY >= 80) {
+  //     setNavbarScroll(true);
+  //   } else {
+  //     setNavbarScroll(false);
+  //   }
+  // };
+  // window.addEventListener("scroll", changeBackground);
 
   return (
     <>
@@ -33,32 +35,35 @@ function Navbar() {
             </Link>
         </div>
     </nav> */}
-        <AppBar
-        sx={
-          navbarScroll
-            ? {
-                backgroundColor: "#000",
-                transition: "0.3s",
-                width: "100%",
-              }
-            : {
-                backgroundColor: "#000" ? "transparent" : "#000",
-                boxShadow: 0,
-                transition: "0.3s",
-                width: "100%",
-              }
-        }
-        className="navbar navbar-expand-lg navbar-light fixed-top shadow-sm"
-        id="mainNav"
-      >
-        <div className="container d-flex justify-content-start navegacion">
-          <a className="navbar-brand fw-bold" href="#page-top" title="Top-Page">
-          <Link to="/" style={{ marginTop:"0.3rem", color:"#fff"}}> <img style={{width:"8rem"}} src={Logo} alt="logo"/></Link>  
-          </a>
+    <header>
+        <div class="nav-wrapper">
+            <div class="logo-container">
+               <Link to="/"> <img  class="logo" src={Logo} alt="Logo"/></Link>
+            </div>
+            <nav>
+                <input class="hidden" type="checkbox" id="menuToggle"/>
+                <label class="menu-btn" for="menuToggle">
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                </label>
+                <div class="nav-container">
+                    <ul class="nav-tabs">
+                <a href="#proyecto"> <li class="nav-tab">Proyecto</li> </a>
+                {/* <a href="#planos" > <li class="nav-tab">Planos</li></a> */}
+                <a href="#agradecimientos">  <li class="nav-tab">Agradecimientos</li></a>
+                <Link to="/muestras"><a href="#"> <li class="nav-tab">Muestras</li></a></Link>
+           
+
+                       
+                       
+                      
+                       
+                    </ul>
+                </div>
+            </nav>
         </div>
-      </AppBar>
-   
-     
+    </header>
    
     </>
   );

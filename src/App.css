@@ -52,6 +52,7 @@ html {
 	min-height: 380px;
 	border-radius: 23px;
 	padding: 80px 60px;
+
 }
 
 .main-banner h6 {
@@ -77,6 +78,7 @@ html {
 	background-color: #d6d6d62d;
 	padding: 60px;
 	border-radius: 23px;
+	margin-top: 6rem;
 }
 
 .main-button a {

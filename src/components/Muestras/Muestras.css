@@ -1,0 +1,11 @@
+.bg-muestras{
+    background-color: black;
+  
+    background-size:cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.gif-muestras{
+    border-radius: 0.8rem;
+}

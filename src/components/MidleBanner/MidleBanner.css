@@ -1,0 +1,17 @@
+
+  
+.title-banner{
+      color: #f6ffd9;
+      font-size: 32px;
+      letter-spacing: 4px;
+  }
+  .wrap-banner{
+    margin-top: 4rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+     height:47vh;
+   background:url(https://images.pexels.com/photos/66997/pexels-photo-66997.jpeg?cs=srgb&dl=nature-sky-sunset-the-mountains-66997.jpg&fm=jpg);
+   background-size:cover;
+    background-position:center;
+  }
