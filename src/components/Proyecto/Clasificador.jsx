@@ -478,6 +478,7 @@ function Clasificador() {
                   </button>
                 </div>
               )}
+              
               {/* Captura Modal */}
               {canvas && (
                 <div className="imageHolder card-body">
@@ -498,6 +499,24 @@ function Clasificador() {
                   </button>
                 </div>
               )}
+
+               {/* Boton para guardar los datos en la DB */}
+  {tagOne !== null && (
+              <button
+              style={{ marginTop: "1rem", marginLeft:"11rem" }}
+              className="css-button-gradient--1"
+              onClick={triggerSave}
+             >
+              <i
+                style={{ marginRight: "0.5rem " }}
+                class=" fas fa-regular fa-floppy-disk"
+              ></i>
+              Guardar Datos
+               </button>
+              )}
+
+              
+            
             </div>
 
             <div className=" col-12 col-md-4 col-lg-4">
@@ -517,7 +536,10 @@ function Clasificador() {
                               text={`${confOne.toFixed(2)}%`}
                             />
                           </div>
+ 
+
                         </div>
+                        
 
                         {/* <div className="col-6 col-lg-6">
                         <div className="circular-bar">
@@ -527,7 +549,8 @@ function Clasificador() {
                             text={`${confTwo.toFixed(2)}%`}
                           />
                         </div>
-                      </div> */}
+                       </div> */}
+                       
                       </div>
                     </div>
                   </div>
@@ -581,24 +604,8 @@ function Clasificador() {
             </div>
           </div>
 
-          {/* Boton para guardar los datos en la DB */}
-          {tagOne !== null && (
-            <button
-              style={{ marginBottom: "3rem" }}
-              className="css-button-gradient--1"
-              onClick={triggerSave}
-            >
-              <i
-                style={{ marginRight: "0.5rem " }}
-                class=" fas fa-regular fa-floppy-disk"
-              ></i>
-              Guardar Datos
-            </button>
-          )}
         </div>
-        <div className="footer">
-          <Footer />
-        </div>
+     
       </div>
     </>
   );

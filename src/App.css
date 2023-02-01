@@ -73,6 +73,18 @@ html {
 	color: #4088f5;
 }
 
+.main-banner h1 {
+	font-size: 45px;
+	text-transform: uppercase;
+	margin-bottom: 25px;
+}
+
+.main-banner h1 em {
+	font-style: normal;
+	color: #4088f5;
+}
+
+
 .page-content {
 	margin-top: 110px;
 	background-color: #d6d6d62d;

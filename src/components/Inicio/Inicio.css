@@ -5,6 +5,30 @@
     background-image: url("../../assets/img/bg-img.png");
     bottom: 1rem;
 } 
+@media all and (max-width: 450px) {
+   
+    .column-1 {
+      
+      order:2;
+    }
+     .column-2 {
+    
+      order: 1;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .column-1 {
+      
+        order:2;
+      }
+       .column-2 {
+      
+        order: 1;
+      }
+   }
+ 
+
 .title{
     margin-top: 6rem;
 }
@@ -31,10 +55,7 @@
 .carousel .carousel-control-next-icon{
     visibility: visible;
 }
-.boton-descarga{
-    color: #000;
-    border: solid 1px #000;
-}
+
 
 /* Toogle text */
 .text-show{
@@ -47,7 +68,17 @@
     color: green;
 }
 
-/* Texto oculto */
-.tag-text{
-    display:none;
+
+.boton-descarga{
+   
+    margin-right: 30px;
+    background: #5E5EEC;
+    background: linear-gradient(to right, #5E5EEC 25%, #0ec1e6  65%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+
+
+
+
+

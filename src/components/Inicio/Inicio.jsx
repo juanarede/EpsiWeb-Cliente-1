@@ -39,7 +39,7 @@ function Inicio() {
   return (
     <>
       <div className="blackg">
-      <Navbr/>
+        <Navbr />
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
@@ -57,7 +57,6 @@ function Inicio() {
                         </h4>
 
                         <div class="row buton-inicio justify-content-start">
-                        
                           <div class="col-12 col-md-3">
                             <Link to="/muestras">
                               <button class="css-button-gradient--1">
@@ -85,13 +84,43 @@ function Inicio() {
                       ¿De qué se trata el proyecto?{" "}
                     </h2>
                     <hr
-                class="mb-4 mt-0   "
-                style={{width:"300px", backgroundColor: "#000", height: "4px"}}
-                />
+                      class="mb-4 mt-0   "
+                      style={{
+                        width: "300px",
+                        backgroundColor: "#000",
+                        height: "4px",
+                      }}
+                    />
                     <p class="lead fw-normal text-muted">
-                    Es un proyecto de sustentabilidad que tiene como objetivo ayudar en el diágnostico de la calidad de agua, tanto en entornos naturales, como agua para consumo.<span className="tag-text"> Consta de un <span className="tag">kit</span> que contine un puntero láser y un <span className="tag">switch</span> para mantener prendido este, una <span className="tag">jeringa</span> que contendrá la muestra de agua a analizar, un soporte que permita colocar el láser y la jeringa en una posición precisa para que la amplificación de la gota de agua sea óptima. Luego la imagen preyectada es analizada por medio de esta apliación web, y determina si hay presencia, o no, de microorganismos o bacterias en esa muestra de agua.</span>
-                  {text !== true &&<span className="text-show" onClick={handleShowText}> Mostrar mas...</span>}
-                  {text &&<span className="text-show" onClick={handleHideText}> Mostrar menos...</span>}
+                      Es un proyecto de sustentabilidad que tiene como objetivo
+                      ayudar en el diágnostico de la calidad de agua, tanto en
+                      entornos naturales, como agua para consumo.
+                      <span className="tag-text">
+                        {" "}
+                        Consta de un <span className="tag">kit</span> que
+                        contine un puntero láser y un{" "}
+                        <span className="tag">switch</span> para mantener
+                        prendido este, una <span className="tag">jeringa</span>{" "}
+                        que contendrá la muestra de agua a analizar, un soporte
+                        que permita colocar el láser y la jeringa en una
+                        posición precisa para que la amplificación de la gota de
+                        agua sea óptima. Luego la imagen preyectada es analizada
+                        por medio de esta apliación web, y determina si hay
+                        presencia, o no, de microorganismos o bacterias en esa
+                        muestra de agua.
+                      </span>
+                      {text !== true && (
+                        <span className="text-show" onClick={handleShowText}>
+                          {" "}
+                          Mostrar mas...
+                        </span>
+                      )}
+                      {text && (
+                        <span className="text-show" onClick={handleHideText}>
+                          {" "}
+                          Mostrar menos...
+                        </span>
+                      )}
                     </p>
                   </div>
                   <div class="col-sm-8 col-md-6">
@@ -100,41 +129,78 @@ function Inicio() {
                     </video>
                   </div>
 
-                  <div  class="col-12 col-lg-6">
+                  <div class="col-12 col-lg-6 column-1">
                     <video className="img-fluid mt-4" controls>
                       <source src={video2} type="video/mp4" />
                     </video>
                   </div>
-                  <div class="col-sm-8 col-md-5">
+                  <div class="col-sm-8 col-md-5 column-2">
                     <h2 class="display-4 lh-1 mb-4">Podes hacerlo vos mismo</h2>
                     <p class="lead fw-normal text-muted">
-                    Descarga los planos en formato PDF para elaborar tu propia herramienta de medición:
+                      Descarga los planos en formato PDF para elaborar tu propia
+                      herramienta de medición:
                     </p>
                     <div>
-                      <a type="button" href={a} className="boton-descarga" download="Explotado Plano">Explotado plano</a>
-                      <a type="button" href={b} className="boton-descarga" download="Pieza Nº1">Pieza Nº1</a>
-                      <a type="button" href={c} className="boton-descarga" download="Pieza Nº2">Pieza Nº2</a>
-                      <a type="button" href={d} className="boton-descarga" download="Pieza Nº3">Pieza Nº3</a>
-                      <a type="button" href={e} className="boton-descarga" download="Pieza Nº4">Pieza Nº4</a>
-                      <a type="button" href={f} className="boton-descarga" download="Switch Laser">Switch Laser</a>
+                      <a
+                        type="button"
+                        href={a}
+                        className="boton-descarga"
+                        download="Explotado Plano"
+                      >
+                      <h6> Explotado plano</h6>
+                       
+                      </a>
+                      <a
+                        type="button"
+                        href={b}
+                        className="boton-descarga"
+                        download="Pieza Nº1"
+                      >
+                       <h6>Pieza Nº1</h6> 
+                      </a>
+                      <a
+                        type="button"
+                        href={c}
+                        className="boton-descarga"
+                        download="Pieza Nº2"
+                      >
+                       <h6> Pieza Nº2</h6>
+                      </a>
+                      <a
+                        type="button"
+                        href={d}
+                        className="boton-descarga"
+                        download="Pieza Nº3"
+                      >
+                       <h6> Pieza Nº3</h6>
+                      </a>
+                      <a
+                        type="button"
+                        href={e}
+                        className="boton-descarga"
+                        download="Pieza Nº4"
+                      >
+                        <h6>Pieza Nº4</h6>
+                      </a>
+                      <a
+                        type="button"
+                        href={f}
+                        className="boton-descarga"
+                        download="Switch Laser"
+                      >
+                       <h6>Switch Laser</h6> 
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
-             
-              <div className="footer">
-          
-               
-              </div>
             </section>
-        
           </div>
         </div>
-       
+
         <MidleBanner />
         <Footer />
       </div>
-    
     </>
   );
 }
