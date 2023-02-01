@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./Inicio.css";
 import Footer from "../Footer/Footer";
@@ -10,7 +10,32 @@ import { Link } from "react-router-dom";
 import MidleBanner from "../MidleBanner/MidleBanner";
 import Navbr from "./Navbr";
 
+import a from '../../assets/files/Explotado_plano.PDF';
+import b from '../../assets/files/Pieza1.PDF';
+import c from '../../assets/files/Pieza2.PDF';
+import d from '../../assets/files/Pieza3.PDF';
+import e from '../../assets/files/Pieza4.PDF';
+import f from '../../assets/files/Laser_Pointer_Switch.zip';
+import { useEffect } from "react";
+
 function Inicio() {
+  const [text, setText] = useState(false);
+  const[span, setSpan] = useState(null);
+  
+  const handleShowText=()=>{
+    span.style.display ='block';
+    setText(true);
+  }
+
+  const handleHideText=()=>{
+    span.style.display ='none';
+    setText(false);
+  }
+ 
+  useEffect(()=>{
+    setSpan(document.querySelector('.tag-text'));
+  },[span])
+
   return (
     <>
       <div className="blackg">
@@ -23,10 +48,10 @@ function Inicio() {
                   <div class="row">
                     <div class="col-lg-7">
                       <div class="header-text">
-                        <h6>lorem ipsum</h6>
-                        <h4>
+                        <h6>Sistema eficiente de verificación del agua</h6>
+                        <h1>
                           Más <em>Agua</em> Limpia{" "}
-                        </h4>
+                        </h1>
                         <h4 style={{ marginTop: "-2rem" }}>
                           más <em>Vida</em>
                         </h4>
@@ -64,17 +89,9 @@ function Inicio() {
                 style={{width:"300px", backgroundColor: "#000", height: "4px"}}
                 />
                     <p class="lead fw-normal text-muted">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s,Lorem Ipsum is
-                      simply dummy text of the printing and typesetting
-                      industry. Lorem Ipsum has been the industry's standard
-                      dummy text ever since the 1500s,Lorem Ipsum is simply
-                      dummy text of the printing and typesetting industry. Lorem
-                      Ipsum has been the industry's standard dummy text ever
-                      since the 1500s,Lorem Ipsum is simply dummy text of the
-                      printing and typesetting industry. Lorem Ipsum has been
-                      the industry's standard dummy text ever since the 1500s,
+                    Es un proyecto de sustentabilidad que tiene como objetivo ayudar en el diágnostico de la calidad de agua, tanto en entornos naturales, como agua para consumo.<span className="tag-text"> Consta de un <span className="tag">kit</span> que contine un puntero láser y un <span className="tag">switch</span> para mantener prendido este, una <span className="tag">jeringa</span> que contendrá la muestra de agua a analizar, un soporte que permita colocar el láser y la jeringa en una posición precisa para que la amplificación de la gota de agua sea óptima. Luego la imagen preyectada es analizada por medio de esta apliación web, y determina si hay presencia, o no, de microorganismos o bacterias en esa muestra de agua.</span>
+                  {text !== true &&<span className="text-show" onClick={handleShowText}> Mostrar mas...</span>}
+                  {text &&<span className="text-show" onClick={handleHideText}> Mostrar menos...</span>}
                     </p>
                   </div>
                   <div class="col-sm-8 col-md-6">
@@ -89,17 +106,18 @@ function Inicio() {
                     </video>
                   </div>
                   <div class="col-sm-8 col-md-5">
-                    <h2 class="display-4 lh-1 mb-4"></h2>
+                    <h2 class="display-4 lh-1 mb-4">Podes hacerlo vos mismo</h2>
                     <p class="lead fw-normal text-muted">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s,Lorem Ipsum is
-                      simply dummy text of the printing and typesetting
-                      industry. Lorem Ipsum has been the industry's standard
-                      dummy text ever since the 1500s,Lorem Ipsum is simply
-                      dummy text of the printing and typesetting industry. Lorem
-                      Ipsum has been the industry's standard dummy text ever
+                    Descarga los planos en formato PDF para elaborar tu propia herramienta de medición:
                     </p>
+                    <div>
+                      <a type="button" href={a} className="boton-descarga" download="Explotado Plano">Explotado plano</a>
+                      <a type="button" href={b} className="boton-descarga" download="Pieza Nº1">Pieza Nº1</a>
+                      <a type="button" href={c} className="boton-descarga" download="Pieza Nº2">Pieza Nº2</a>
+                      <a type="button" href={d} className="boton-descarga" download="Pieza Nº3">Pieza Nº3</a>
+                      <a type="button" href={e} className="boton-descarga" download="Pieza Nº4">Pieza Nº4</a>
+                      <a type="button" href={f} className="boton-descarga" download="Switch Laser">Switch Laser</a>
+                    </div>
                   </div>
                 </div>
               </div>

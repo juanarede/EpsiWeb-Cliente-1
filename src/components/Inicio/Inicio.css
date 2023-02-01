@@ -31,3 +31,23 @@
 .carousel .carousel-control-next-icon{
     visibility: visible;
 }
+.boton-descarga{
+    color: #000;
+    border: solid 1px #000;
+}
+
+/* Toogle text */
+.text-show{
+    color:#0158a2;;
+    font-weight: bold;
+    cursor: pointer;
+}
+.text-show:hover{
+    font-weight: bold;
+    color: green;
+}
+
+/* Texto oculto */
+.tag-text{
+    display:none;
+}
