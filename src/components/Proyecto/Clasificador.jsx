@@ -158,7 +158,7 @@ function Clasificador() {
 
     //Envio de formulario a la API
     await axios
-      .post(`http://127.0.0.1:8000/api/enviar`, formData)
+      .post(`https://api.customer-eg.online/api/enviar`, formData)
       .then(({ data }) => {
         Swal.fire({
           icon: "success",
@@ -529,7 +529,7 @@ function Clasificador() {
                       <div className="row">
                         <div className="col-6 col-lg-6">
                           <div className="circular-bar">
-                            <h6>{tagOne}</h6>
+                            <h6>{tagOne.toUpperCase()}</h6>
 
                             <CircularProgressbar
                               value={confOne.toFixed(2)}
