@@ -30,7 +30,7 @@ import Reaptcha from "reaptcha";
 
 
 
-const REACT_APP_SITE_KEY = "6Ld_oVgkAAAAAJ7XHjTKhHfsdDFvJfBopxL9TSLl";
+
 
 function Clasificador() {
   //Geolocate
@@ -74,12 +74,7 @@ function Clasificador() {
   const submitRef = useRef();
   const uploadRef = useRef();
 
-  //Captcha
- const [verified, setVerified]= useState(false);
-
- const onVerify = (recaptchaResponse)=>{
-      setVerified(true);
- }
+  
 
 
   //Model Load, Callback second argument
@@ -517,12 +512,12 @@ function Clasificador() {
 
                {/* Boton para guardar los datos en la DB */}
               {tagOne !== null && (
-                <div>
+                
               <button
               style={{ marginTop: "1rem", marginLeft:"11rem" }}
               className="css-button-gradient--1"
               onClick={triggerSave}
-              disabled={verified}
+              
              >
               <i
                 style={{ marginRight: "0.5rem " }}
@@ -531,12 +526,8 @@ function Clasificador() {
               Guardar Datos
                </button>
 
-               <Reaptcha
-                 className="reaptcha"
-                 sitekey={REACT_APP_SITE_KEY}
-                 onVerify={onVerify}
-               />
-               </div>
+               
+               
               )}
 
               
