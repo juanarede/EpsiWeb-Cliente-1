@@ -12,7 +12,7 @@ function Datos() {
   const [registros, setRegistros] = useState([]);
 
   const handleData= async ()=>{
-     const response = await axios.get(`http://127.0.0.1:8000/api/informes`);
+     const response = await axios.get(`https://api.customer-eg.online/api/informes`);
 
      setRegistros(response.data);
      console.log(registros);

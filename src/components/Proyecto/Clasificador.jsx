@@ -25,6 +25,13 @@ import cloud from "../../assets/img/cloud.png";
 import { locateContext } from "../../context/locateContext";
 import Siderbar from "../Sidebar/Sidebar";
 
+//Captcha
+import Reaptcha from "reaptcha";
+
+
+
+
+
 function Clasificador() {
   //Geolocate
   const locate = useContext(locateContext);
@@ -66,6 +73,9 @@ function Clasificador() {
 
   const submitRef = useRef();
   const uploadRef = useRef();
+
+  
+
 
   //Model Load, Callback second argument
   const classifier = ml5.imageClassifier(
@@ -158,7 +168,7 @@ function Clasificador() {
 
     //Envio de formulario a la API
     await axios
-      .post(`http://127.0.0.1:8000/api/enviar`, formData)
+      .post(`https://api.customer-eg.online/api/enviar`, formData)
       .then(({ data }) => {
         Swal.fire({
           icon: "success",
@@ -501,11 +511,13 @@ function Clasificador() {
               )}
 
                {/* Boton para guardar los datos en la DB */}
-  {tagOne !== null && (
+              {tagOne !== null && (
+                
               <button
               style={{ marginTop: "1rem", marginLeft:"11rem" }}
               className="css-button-gradient--1"
               onClick={triggerSave}
+              
              >
               <i
                 style={{ marginRight: "0.5rem " }}
@@ -513,6 +525,9 @@ function Clasificador() {
               ></i>
               Guardar Datos
                </button>
+
+               
+               
               )}
 
               
@@ -529,7 +544,7 @@ function Clasificador() {
                       <div className="row">
                         <div className="col-6 col-lg-6">
                           <div className="circular-bar">
-                            <h6>{tagOne}</h6>
+                            <h6>{tagOne.toUpperCase()}</h6>
 
                             <CircularProgressbar
                               value={confOne.toFixed(2)}
