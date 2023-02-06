@@ -48,8 +48,8 @@ function Inicio() {
                   <div class="row">
                     <div class="col-lg-7">
                       <div class="header-text">
-                        <h6>Sistema eficiente de verificación del agua</h6>
-                        <h1>
+                        <h6 style={{color:"#575757ec"}}>Sistema eficiente de verificación del agua</h6>
+                        <h1 style={{color:"#575757ec"}}>
                           Más <em>Agua</em> Limpia{" "}
                         </h1>
                         <h4 style={{ marginTop: "-2rem" }}>
