@@ -25,6 +25,13 @@ import cloud from "../../assets/img/cloud.png";
 import { locateContext } from "../../context/locateContext";
 import Siderbar from "../Sidebar/Sidebar";
 
+//Captcha
+import Reaptcha from "reaptcha";
+
+
+
+const REACT_APP_SITE_KEY = "6Ld_oVgkAAAAAJ7XHjTKhHfsdDFvJfBopxL9TSLl";
+
 function Clasificador() {
   //Geolocate
   const locate = useContext(locateContext);
@@ -66,6 +73,14 @@ function Clasificador() {
 
   const submitRef = useRef();
   const uploadRef = useRef();
+
+  //Captcha
+ const [verified, setVerified]= useState(false);
+
+ const onVerify = (recaptchaResponse)=>{
+      setVerified(true);
+ }
+
 
   //Model Load, Callback second argument
   const classifier = ml5.imageClassifier(
@@ -501,11 +516,13 @@ function Clasificador() {
               )}
 
                {/* Boton para guardar los datos en la DB */}
-  {tagOne !== null && (
+              {tagOne !== null && (
+                <div>
               <button
               style={{ marginTop: "1rem", marginLeft:"11rem" }}
               className="css-button-gradient--1"
               onClick={triggerSave}
+              disabled={verified}
              >
               <i
                 style={{ marginRight: "0.5rem " }}
@@ -513,6 +530,13 @@ function Clasificador() {
               ></i>
               Guardar Datos
                </button>
+
+               <Reaptcha
+                 className="reaptcha"
+                 sitekey={REACT_APP_SITE_KEY}
+                 onVerify={onVerify}
+               />
+               </div>
               )}
 
               
