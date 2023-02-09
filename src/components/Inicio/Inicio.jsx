@@ -16,6 +16,7 @@ import c from '../../assets/files/Pieza2.PDF';
 import d from '../../assets/files/Pieza3.PDF';
 import e from '../../assets/files/Pieza4.PDF';
 import f from '../../assets/files/Laser_Pointer_Switch.zip';
+import g from '../../assets/files/Pieza_Base.jpeg'
 import { useEffect } from "react";
 
 function Inicio() {
@@ -148,6 +149,15 @@ function Inicio() {
                         download="Explotado Plano"
                       >
                       <h6> Explotado plano</h6>
+                       
+                      </a>
+                      <a
+                        type="button"
+                        href={g}
+                        className="boton-descarga"
+                        download="Pieza Base"
+                      >
+                      <h6>Pieza Base</h6>
                        
                       </a>
                       <a
