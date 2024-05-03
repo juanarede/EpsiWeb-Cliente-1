@@ -5,29 +5,13 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import * as ml5 from "ml5";
 import Mapa from "../../mapa/Mapa";
-
-import Footer from "../Footer/Footer";
-
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Sidebar from "../Sidebar/Sidebar";
-
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
 import Logo from "../../assets/img/Logo.png";
-
-
 import webcam from "../../assets/img/camara-web.png";
-import camara from "../../assets/img/camara.png";
-import cloud from "../../assets/img/cloud.png";
-
 import { locateContext } from "../../context/locateContext";
-import Siderbar from "../Sidebar/Sidebar";
-
-//Captcha
-import Reaptcha from "reaptcha";
-
 
 
 
@@ -46,6 +30,8 @@ function Clasificador() {
   const [confOne, setConfOne] = useState(null);
   const [confTwo, setConfTwo] = useState(null);
   const [confThree, setConfThree] = useState(null);
+  const [latitud, setLatitud] = useState(null)
+  const [longitud, setLongitud] = useState(null)
   const imageRef = useRef();
 
   //Video
@@ -156,24 +142,37 @@ function Clasificador() {
 
   const sendData = async (e) => {
     e.preventDefault();
-
+    setLatitud(locate[0])
+    setLongitud(locate[1])
     const formData = new FormData();
-
-    formData.append("latitud", locate[0]);
     formData.append("longitud", locate[1]);
+    formData.append("latitud", locate[0]);
     formData.append("label_1", tagOne);
     formData.append("conf_1", confOne);
     formData.append("label_2", tagTwo);
     formData.append("conf_2", confTwo);
 
+    const payload = {
+         latitud: latitud.toString(),
+         longitud: longitud.toString(),
+         label_1: tagOne.toString(),
+         conf_1: confOne.toString(),
+         label_2: tagTwo.toString(),
+         conf_2: confTwo.toString()
+    }
+
     //Envio de formulario a la API
     await axios
-      .post(`https://api.customer-eg.online/api/enviar`, formData)
+      .post(`https://minimal-server-six.vercel.app/api/informes`, payload)
       .then(({ data }) => {
         Swal.fire({
           icon: "success",
           text: data.message,
         });
+      })
+      .catch(err=>{
+         const res = err.message
+         console.log(res)
       });
   };
 
@@ -221,10 +220,16 @@ function Clasificador() {
     setHistory([]);
   };
 
+  
+
+
   useEffect(() => {
+   
     if (imageURL) {
       setHistory([imageURL, ...history]);
     }
+
+    
   }, [imageURL]);
 
   return (
@@ -242,7 +247,7 @@ function Clasificador() {
             <div className="dataSend">
               <form onSubmit={sendData}>
                 <input type="hidden" value={locate[0]} />
-                <input type="hidden" value={locate[1]} />
+                <input type="hidden" value={locate[1]}  />
                 <input
                   type="hidden"
                   value={tagOne}
