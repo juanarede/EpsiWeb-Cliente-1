@@ -8,7 +8,7 @@ import video2 from "../../assets/video/video2.mp4";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import MidleBanner from "../MidleBanner/MidleBanner";
-import Navbr from "./Navbr";
+import Navbar from "./Navbar";
 
 import a from '../../assets/files/Explotado_plano.PDF';
 import b from '../../assets/files/Pieza1.PDF';
@@ -40,7 +40,7 @@ function Inicio() {
   return (
     <>
       <div className="blackg">
-        <Navbr />
+        <Navbar />
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
