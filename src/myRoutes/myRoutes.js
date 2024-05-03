@@ -12,9 +12,7 @@ function myRoutes() {
         <Route path="/" element={<Inicio />} />
         <Route path="/clasificador" element={<Clasificador />} />
         <Route path="/muestras" element={<Muestras />} />
-        <Route path="/datos" element={<Datos />} />
-
-        
+        <Route path="/datos" element={<Datos />} />   
     </Routes>
   )
 }
