@@ -163,7 +163,7 @@ function Clasificador() {
 
     //Envio de formulario a la API
     await axios
-      .post(`https://minimal-server-six.vercel.app/api/informes`, payload)
+      .post(`https://msthompson-server.vercel.app/api/informes`, payload)
       .then(({ data }) => {
         Swal.fire({
           icon: "success",
