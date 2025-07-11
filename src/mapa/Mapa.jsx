@@ -27,7 +27,7 @@ function Mapa(){
      const handleData= async ()=>{
  
 
-        const response = await axios.get(`https://minimal-server-six.vercel.app/api/informes`);
+        const response = await axios.get(`https://msthompson-server.vercel.app/api/informes`);
         
         setRegistros(response.data);
         
